@@ -1,0 +1,11 @@
+{
+    "name": "3mcweb/mvc",
+    "description": "MVC Structure",
+    "authors": [
+        {
+            "name": "mlaferreira",
+            "email": "mlaferreira.marcello@gmail.com"
+        }
+    ],
+    "require": {}
+}
