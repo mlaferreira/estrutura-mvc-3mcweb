@@ -7,31 +7,29 @@ use App\Controllers\Errors\HttpErrorController;
 
 
 
+
     class Router{
 
         public function dispatch($url){
-            $url = trim($url, '/');
-            
-
+            $url = trim($url, '/');      
             $parts = $url ? explode('/', $url) : [];
             
 
             $controllerName = $parts[0] ?? 'Home';
-            $controllerName = ucfirst($controllerName).'Controller';
+            $controllerName = 'App\Controllers\\'. ucfirst($controllerName).'Controller';
+        
 
-            if(!class_exists($controllerName)){
+           $actionName = $parts[1] ?? 'index';
+           
+
+           if(!class_exists($controllerName)){
                 //Redirecionar para página 404.
                 $controller = new HttpErrorController();
                 $controller->notFound();
                 return;
 
             }
-
-           $controller = new $controllerName();
-
-           $actionName = $parts[1] ?? 'index';
-           dd($actionName, $controllerName, $parts, $url);
-
+            $controller = new $controllerName();
 
            if(!method_exists($controller, $actionName)){
             //Exibir um 404
