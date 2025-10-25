@@ -1,6 +1,11 @@
 <?php
-require_once('../app/controllers/HomeController.php');
-require_once ('../app/controllers/errors/HttpErrorController.php');
+namespace App\Core;
+
+use App\Controllers\HomeController;
+use App\Controllers\Errors\HttpErrorController;
+
+
+
 
     class Router{
 
@@ -17,7 +22,7 @@ require_once ('../app/controllers/errors/HttpErrorController.php');
             if(!class_exists($controllerName)){
                 //Redirecionar para página 404.
                 $controller = new HttpErrorController();
-                $controller->NotFound();
+                $controller->notFound();
                 return;
 
             }
@@ -25,10 +30,13 @@ require_once ('../app/controllers/errors/HttpErrorController.php');
            $controller = new $controllerName();
 
            $actionName = $parts[1] ?? 'index';
+           dd($actionName, $controllerName, $parts, $url);
+
+
            if(!method_exists($controller, $actionName)){
             //Exibir um 404
                 $controller = new HttpErrorController();
-                $controller->NotFound();
+                $controller->notFound();
                 return;
            }
 

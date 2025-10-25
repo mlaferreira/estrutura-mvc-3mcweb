@@ -1,4 +1,5 @@
 <?php
+namespace App\Core;
 class Controller{
     protected function view($view, $viewData = []){
         extract($viewData);
