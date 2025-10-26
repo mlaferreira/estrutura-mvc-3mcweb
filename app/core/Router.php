@@ -8,6 +8,7 @@ use App\Controllers\Errors\HttpErrorController;
 
 
 
+
     class Router{
 
         public function dispatch($url){
@@ -16,10 +17,12 @@ use App\Controllers\Errors\HttpErrorController;
             
 
             $controllerName = $parts[0] ?? 'Home';
+           
+            
+            
             $controllerName = 'App\Controllers\\'. ucfirst($controllerName).'Controller';
-        
-
-           $actionName = $parts[1] ?? 'index';
+            $actionName = $parts[1] ?? 'index';
+             
            
 
            if(!class_exists($controllerName)){
